@@ -1,0 +1,90 @@
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>DRUG DATA</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<script src="script/jquery-1.11.3.min.js" type="text/javascript"></script>
+<!-- DataTables CSS -->
+<link rel="stylesheet" type="text/css" href="DataTables-1.10.7/media/css/jquery.dataTables.css">  
+<!-- jQuery -->
+<script type="text/javascript" charset="utf8" src="DataTables-1.10.7/media/js/jquery.js"></script>  
+<!-- DataTables -->
+<script type="text/javascript" charset="utf8" src="DataTables-1.10.7/media/js/jquery.dataTables.js"></script>
+
+<script>
+
+$(function() 
+{     
+    
+	 var dmJSON = "http://test.hiskenya.org/api/analytics.jsonp?dimension=dx:c0MB4RmVjxk;qnZmg5tNSMy;gVp1KSFI69G;eFqDcjgvt39;BnGDrFwyQp9&dimension=pe:LAST_12_MONTHS&dimension=co&filter=ou:HfVjCurKxh2&displayProperty=NAME&callback=?";
+	 $.getJSON( dmJSON, function(data) 
+	   {
+         for(var i=0; i<=data.rows.length; i++)
+	    { 
+	   	
+			$.each(data.rows, function(s, g) 
+			{
+				var drug_id=data.rows[i][0];
+				var period=data.rows[i][1];
+				var drug_category_id=[i][2];
+				var drug_value=[i][3];
+
+			 	var tblRow = "<tr>" + "<td>" + g.drug_id+ "</td>" + "<td>" + g.period + "</td>" + "<td>" + g.drug_category_id + "</td>" + "<td>" + g.drug_value + "</td>" + "</tr>"
+				$(tblRow).appendTo("#entrydata tbody");  
+
+			 // $.post("http://localhost/db/county.php", {county_id: g.id,county_name:g.name,href:g.href,submit:"submit"},function(result){});//jquery post function
+
+              });
+
+	}
+			
+		  $(document).ready(function()
+	     {
+		 $("#entrydata").dataTable(
+		    {
+
+		    });
+	       });
+
+        });
+ 	
+});
+
+
+</script>
+</head>
+
+<body>
+
+<div class="wrapper">
+<div class="profile">
+<table id= "entrydata" border="1">
+    <thead>
+        <th>DRUG ID</th>
+        <th>PERIOD</th>
+        <th>DRUG CATEGORY ID</th>
+        <th>DRUG VALUE</th>
+        
+    </thead>
+    <tbody>
+
+    </tbody>
+    <tfoot>
+            <tr>
+                <th>DRUG ID</th>
+                <th>PERIOD</th>
+                <th>DRUG CATEGORY ID</th>
+                <th>DRUG VALUE</th>
+            </tr>
+    </tfoot>
+</table>
+
+    </div>
+</div>
+
+</body>
+
+</html>
+
