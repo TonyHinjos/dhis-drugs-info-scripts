@@ -31,7 +31,7 @@ $(function()
 				var drug_category_id=[i][2];
 				var drug_value=[i][3];
 
-			 	var tblRow = "<tr>" + "<td>" + g.drug_id+ "</td>" + "<td>" + g.period + "</td>" + "<td>" + g.drug_category_id + "</td>" + "<td>" + g.drug_value + "</td>" + "</tr>"
+			 	var tblRow = "<tr>" + "<td>" + drug_id+ "</td>" + "<td>" + period + "</td>" + "<td>" + drug_category_id + "</td>" + "<td>" + drug_value + "</td>" + "</tr>"
 				$(tblRow).appendTo("#entrydata tbody");  
 
 			 // $.post("http://localhost/db/county.php", {county_id: g.id,county_name:g.name,href:g.href,submit:"submit"},function(result){});//jquery post function
