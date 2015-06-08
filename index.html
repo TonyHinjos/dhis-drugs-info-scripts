@@ -37,6 +37,34 @@ $(function()
 			 // $.post("http://localhost/db/county.php", {county_id: g.id,county_name:g.name,href:g.href,submit:"submit"},function(result){});//jquery post function
 
               });
+              
+              
+              
+              foreach(x in xx){
+              	
+              	 var dmJSON = "http://test.hiskenya.org/api/analytics.jsonp?dimension=dx:c0MB4RmVjxk;qnZmg5tNSMy;gVp1KSFI69G;eFqDcjgvt39;BnGDrFwyQp9&dimension=pe:LAST_12_MONTHS&dimension=co&filter=ou:"+x+"&displayProperty=NAME&callback=?";
+	 $.getJSON( dmJSON, function(data) 
+	   {
+         for(var i=0; i<=data.rows.length; i++)
+	    { 
+	   	
+			$.each(data.rows, function(s, g) 
+			{
+				var drug_id=data.rows[i][0];
+				var period=data.rows[i][1];
+				var drug_category_id=[i][2];
+				var drug_value=[i][3];
+
+			 	var tblRow = "<tr>" + "<td>" + g.drug_id+ "</td>" + "<td>" + g.period + "</td>" + "<td>" + g.drug_category_id + "</td>" + "<td>" + g.drug_value + "</td>" + "</tr>"
+				$(tblRow).appendTo("#entrydata tbody");  
+
+			 // $.post("http://localhost/db/county.php", {county_id: g.id,county_name:g.name,href:g.href,submit:"submit"},function(result){});//jquery post function
+
+              });
+              	
+              	
+              }
+              
 
 	}
 			
@@ -49,6 +77,14 @@ $(function()
 	       });
 
         });
+        
+        
+        
+        
+        
+        
+        
+        
  	
 });
 
