@@ -1,7 +1,7 @@
 <?php
 include('includes/connect.php');
   $id=$_POST['mapping_id'];
-  $name=$_POST['mapping_id'];
+  $name=$_POST['mapping_name'];
   
 if(isset($_POST['submit']))
   
