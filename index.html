@@ -15,10 +15,11 @@
 <!-- DataTables -->
 <script type="text/javascript" charset="utf8" src="DataTables-1.10.7/media/js/jquery.dataTables.js"></script>
 <script>
-
+  var countyId;
+ 
 $(document).ready(function() 
 {    //passing the json object
-var countyId; 
+
      var fetchJSON="http://localhost/fetchdata/fetch.php";
      
     $.getJSON( fetchJSON, function(result) 
@@ -28,24 +29,24 @@ var countyId;
 	{   
          
 
-		 var dmJSON = "http://test.hiskenya.org/api/analytics.jsonp?dimension=dx:c0MB4RmVjxk;qnZmg5tNSMy;gVp1KSFI69G;eFqDcjgvt39;BnGDrFwyQp9&dimension=pe:LAST_12_MONTHS&dimension=co&filter=ou:"+ result[j] +"&displayProperty=NAME&callback=?";
-	       countyId =result[j];
-           
-	 $.getJSON( countyId,dmJSON,function(data)
-	   
-	   {  	
-	         
+		 var dmJSON = "http://test.hiskenya.org/api/analytics.jsonp?dimension=dx:c0MB4RmVjxk;qnZmg5tNSMy;gVp1KSFI69G;eFqDcjgvt39;BnGDrFwyQp9&dimension=pe:LAST_12_MONTHS&dimension=co&filter=ou:"+ result[j] +"&displayProperty=NAME&callback=?"; 
+		   alert(result[j]);
+	     	 $.getJSON(dmJSON,function(data)
+	        {  
+
+	          countyId=result[j];
+
           //fetch county level aggregate data 	
      for(var i=0; i<data.rows.length; i++)
-	 {        
+	 {       
 				 var drugid=data.rows[i][0];
 				 var periodic=data.rows[i][1];
 				 var drugcategoryid=data.rows[i][2];
 				var drugvalue=data.rows[i][3];
 	         
-		  	var tblRow = "<tr>" + "<td>" + drugid+ "</td>" + "<td>" + periodic + "</td>" + "<td>" + drugcategoryid + "</td>" + "<td>" + drugvalue + "</td>" + "<td>" + countyId + "</td>" + "</tr>"
+		  	var tblRow = "<tr>" + "<td>" + drugid+ "</td>" + "<td>" + periodic + "</td>" + "<td>" + drugcategoryid + "</td>" + "<td>" + drugvalue + "</td>"+ "<td>" + countyId + "</td>"+"</tr>"
 			$(tblRow).appendTo("#entrydata tbody"); 
-	// //     $.post("http://localhost/fetchdata/county.php", {drug_id: drugid,period: periodic,drug_category_id:drugcategoryid,drug_value:drugvalue,submit:"submit"},function(result){});//jquery post function
+	 //$.post("http://localhost/fetchdata/county.php", {drug_id: drugid,period: periodic,drug_category_id:drugcategoryid,drug_value:drugvalue,county_id:countyId,submit:"submit"},function(result){});//jquery post function
 	 }
 
 
@@ -62,7 +63,7 @@ var countyId;
 
 // // 			 // 	var tblRow = "<tr>" + "<td>" + drugid+ "</td>" + "<td>" + periodic + "</td>" + "<td>" + drugcategoryid + "</td>" + "<td>" + drugvalue + "</td>" + "</tr>"
 // // 				// $(tblRow).appendTo("#entrydata tbody"); 
-// //     //       //$.post("http://localhost/fetchdata/county.php", {drug_id: drugid,period: periodic,drug_category_id:drugcategoryid,drug_value:drugvalue,submit:"submit"},function(result){});//jquery post function
+// //     //       //$.post("http://localhost/fetchdata/centralDrugs.php", {drug_id: drugid,period: periodic,drug_category_id:drugcategoryid,drug_value:drugvalue,submit:"submit"},function(result){});//jquery post function
 // //     //     }
 
 // //     //fetching the mapping names and their respective ids
@@ -78,8 +79,9 @@ var countyId;
 // // // 	// "dom": '<"top center"lf>rt<"bottom center"ip><"clear">'
 // // // });
 // // // });
-	
+
  });
+
     
 	}
     
