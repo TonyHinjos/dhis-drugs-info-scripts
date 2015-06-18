@@ -33,7 +33,7 @@ $(document).ready(function()
 
 	             var tblRow = "<tr>" + "<td>" + drugid+ "</td>" + "<td>" + periodic + "</td>" + "<td>" + drugcategoryid + "</td>" + "<td>" + drugvalue + "</td>" + "</tr>"
  				 $(tblRow).appendTo("#entrydata tbody"); 
-          $.post("http://localhost/fetchdata/centralleveldrugsvalue.php", {drug_id: drugid,period: periodic,drug_category_id:drugcategoryid,drug_value:drugvalue,submit:"submit"},function(result){});//jquery post function
+          //$.post("http://localhost/fetchdata/centralleveldrugsvalue.php", {drug_id: drugid,period: periodic,drug_category_id:drugcategoryid,drug_value:drugvalue,submit:"submit"},function(result){});//jquery post function
         }
 
 
@@ -43,6 +43,7 @@ $(document).ready(function()
  </script>
 
 </head>
+<body>
 <div class="wrapper">
 <div class="profile">
 <table id= "entrydata" border="1">
