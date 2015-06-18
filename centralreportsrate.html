@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>DRUG DATA</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<script src="script/jquery-1.11.3.min.js" type="text/javascript"></script>
+<!-- DataTables CSS -->
+<link rel="stylesheet" type="text/css" href="DataTables-1.10.7/media/css/jquery.dataTables.css">  
+<!-- jQuery -->
+<script type="text/javascript" charset="utf8" src="DataTables-1.10.7/media/js/jquery.js"></script>  
+<!-- DataTables -->
+<script type="text/javascript" charset="utf8" src="DataTables-1.10.7/media/js/jquery.dataTables.js"></script>
+<script>
+  
+ 
+$(document).ready(function() 
+{    //passing the json object
+ var dmJSON = "http://test.hiskenya.org/api/analytics.jsonp?dimension=dx:JPaviRmSsJW&dimension=pe:LAST_12_MONTHS&filter=ou:HfVjCurKxh2&displayProperty=NAME&callback=?"; 
+  
+	 $.getJSON(dmJSON,function(data)
+   {   
+   	//fetch central level reporting rates
+for(var i=0; i<=data.rows.length; i++)
+       { 
+
+         var periodic=data.rows[i][1];
+         var reportvalue=data.rows[i][2];
+        
+         var tblRow = "<tr>" + "<td>" + periodic + "</td>" + "<td>" + reportvalue + "</td>" + "</tr>"
+         $(tblRow).appendTo("#entrydata tbody"); 
+          //$.post("http://localhost/fetchdata/centralreportsrate.php", {period: periodic,reporting_rate_value:reportvalue,submit:"submit"},function(result){});//jquery post function
+        }
+    });
+	});
+</script>
+
+</head>
+<body>
+<div class="wrapper">
+<div class="profile">
+<table id= "entrydata" border="1">
+    <thead>
+        <th>PERIOD</th>
+        <th>VALUE</th>
+         
+    </thead>
+    <tbody>
+
+    </tbody>
+    <tfoot>
+            <tr>
+                <th>PERIOD</th>
+                <th>VALUE</th>
+                 
+            </tr>
+    </tfoot>
+</table>
+
+    </div>
+</div>
+</body>
+
+</html>
+
+

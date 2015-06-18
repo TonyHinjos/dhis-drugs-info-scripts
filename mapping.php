@@ -12,7 +12,7 @@ if(isset($_POST['submit']))
   }
   else
   {
-    $sql="INSERT into mapping_drugs_category(mapping_id,mapping_name)values('$id','$name')"; 
+    $sql="INSERT into mapping_drugs_category2(mapping_id,mapping_name)values('$id','$name')"; 
     $qury=mysql_query($sql);
     if(!$qury)
     { 
